@@ -46,7 +46,7 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
         number00FrameLayouts = new FrameLayout[10];
         number00ImageViews = new ImageView[10];
         number00TextViews = new TextView[10];
-
+        //FIRST
         for (int i = 0; i < 10; i++) {
             int numberId = getResources().getIdentifier("number" + i + "FrameLayout", "id", requireActivity().getPackageName());
             int imageId = getResources().getIdentifier("image" + i + "ImageView", "id", requireActivity().getPackageName());
@@ -90,6 +90,7 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
         oddButton = rootView.findViewById(R.id.odd);
         evenButton = rootView.findViewById(R.id.even);
         eraseButton = rootView.findViewById(R.id.erase);
+
         all2Button = rootView.findViewById(R.id.all2);
         odd2Button = rootView.findViewById(R.id.odd2);
         even2Button = rootView.findViewById(R.id.even2);
@@ -103,8 +104,6 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
         odd2Button.setOnClickListener(this);
         even2Button.setOnClickListener(this);
         erase2Button.setOnClickListener(this);
-
-        showAllNumbers();
 
         return rootView;
     }
@@ -154,13 +153,11 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
             }
         }
 
-        if (view == allButton || view == all2Button) {
-            showAllNumbers();
-        } else if (view == oddButton || view == odd2Button) {
-            showNumbers(true);
-        } else if (view == evenButton || view == even2Button) {
-            showNumbers(false);
-        } else if (view == eraseButton || view == erase2Button) {
+        if (isGroup1Button(view)) {
+            handleGroup1ButtonClick(view);
+        } else if (isGroup2Button(view)) {
+            handleGroup2ButtonClick(view);
+        } else if (view == eraseButton) {
             clearSelection(numberFrameLayouts, numberImageViews, numberTextViews);
             clearSelection(number00FrameLayouts, number00ImageViews, number00TextViews);
         }
@@ -179,44 +176,67 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
         }
         imageView.setBackground(gradientDrawable);
     }
-    private void showAllNumbers() {
-        for (FrameLayout frameLayout : numberFrameLayouts) {
-            frameLayout.setVisibility(View.VISIBLE);
+
+    private void handleGroup1ButtonClick(View view) {
+        boolean isSelected = view.isSelected();
+        clearSelection(numberFrameLayouts, numberImageViews, numberTextViews);
+
+        if (view == allButton) {
+            showAllNumbers(numberFrameLayouts);
+        } else if (view == oddButton) {
+            showOddNumbers(numberFrameLayouts);
+        } else if (view == evenButton) {
+            showEvenNumbers(numberFrameLayouts);
+        } else if (view == eraseButton) {
+            clearSelection(numberFrameLayouts, numberImageViews, numberTextViews);
         }
-        for (FrameLayout frameLayout : number00FrameLayouts) {
+
+        view.setSelected(!isSelected);
+    }
+
+    private void handleGroup2ButtonClick(View view) {
+        boolean isSelected = view.isSelected();
+        clearSelection(number00FrameLayouts, number00ImageViews, number00TextViews);
+
+        if (view == all2Button) {
+            showAllNumbers(number00FrameLayouts);
+        } else if (view == odd2Button) {
+            showOddNumbers(number00FrameLayouts);
+        } else if (view == even2Button) {
+            showEvenNumbers(number00FrameLayouts);
+        } else if (view == erase2Button) {
+            clearSelection(number00FrameLayouts, number00ImageViews, number00TextViews);
+        }
+
+        view.setSelected(!isSelected);
+    }
+
+    private void showAllNumbers(FrameLayout[] frameLayouts) {
+        for (FrameLayout frameLayout : frameLayouts) {
             frameLayout.setVisibility(View.VISIBLE);
         }
     }
-    private void showNumbers(boolean showOdd) {
-        for (int i = 0; i < numberFrameLayouts.length; i++) {
-            FrameLayout frameLayout = numberFrameLayouts[i];
-            frameLayout.findViewById(getNumberTextViewId(i));
 
-            if (showOdd && i % 2 == 0) {
-                frameLayout.setVisibility(View.GONE);
-            } else if (!showOdd && i % 2 != 0) {
+    private void showOddNumbers(FrameLayout[] frameLayouts) {
+        for (int i = 0; i < frameLayouts.length; i++) {
+            FrameLayout frameLayout = frameLayouts[i];
+            if (i % 2 == 0) {
                 frameLayout.setVisibility(View.GONE);
             } else {
                 frameLayout.setVisibility(View.VISIBLE);
             }
         }
-        for (int i = 0; i < number00FrameLayouts.length; i++) {
-            FrameLayout frameLayout = number00FrameLayouts[i];
-            frameLayout.findViewById(getNumberTextViewId(i + 10));
+    }
 
-            if (showOdd && (i + 10) % 2 == 0) {
-                frameLayout.setVisibility(View.GONE);
-            } else if (!showOdd && (i + 10) % 2 != 0) {
+    private void showEvenNumbers(FrameLayout[] frameLayouts) {
+        for (int i = 0; i < frameLayouts.length; i++) {
+            FrameLayout frameLayout = frameLayouts[i];
+            if (i % 2 != 0) {
                 frameLayout.setVisibility(View.GONE);
             } else {
                 frameLayout.setVisibility(View.VISIBLE);
             }
         }
-    }
-
-    private int getNumberTextViewId(int number) {
-        int textViewId = getResources().getIdentifier("number" + number + "TextView", "id", requireActivity().getPackageName());
-        return textViewId != 0 ? textViewId : R.id.number0TextView;
     }
 
     private void clearSelection(FrameLayout[] frameLayouts, ImageView[] imageViews, TextView[] textViews) {
@@ -225,4 +245,13 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
             updateImageViewBackground(imageViews[i], textViews[i], false);
         }
     }
+
+    private boolean isGroup1Button(View view) {
+        return view == allButton || view == oddButton || view == evenButton;
+    }
+
+    private boolean isGroup2Button(View view) {
+        return view == all2Button || view == odd2Button || view == even2Button;
+    }
+
 }
