@@ -108,56 +108,49 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
 
         return rootView;
     }
-
     private boolean shouldShowMoneyInputDialog() {
         return !sharedPreferences.contains("TotalMoney");
     }
-
     private void showMoneyInputDialog() {
         MoneyInputDialogFragment moneyInputDialogFragment = MoneyInputDialogFragment.newInstance();
         moneyInputDialogFragment.setMoneyInputListener(this);
         moneyInputDialogFragment.show(getChildFragmentManager(), "money_input_dialog");
     }
-
     @Override
     public void onMoneyInputConfirmed(double money) {
         totalMoney += money;
         totalMoneyTextView.setText(String.format(Locale.getDefault(), "%.2f", totalMoney));
     }
-
     @Override
     public void onClick(View view) {
         boolean isSelected = view.isSelected();
+        boolean isNumberFrameLayout = false;
+        boolean isNumber00FrameLayout = false;
 
-        for (FrameLayout frameLayout : numberFrameLayouts) {
-            frameLayout.setSelected(false);
-        }
-
-        for (FrameLayout frameLayout : number00FrameLayouts) {
-            frameLayout.setSelected(false);
-        }
-
-        for (int i = 0; i < numberImageViews.length; i++) {
-            updateImageViewBackground(numberImageViews[i], numberTextViews[i], false);
-        }
-
-        for (int i = 0; i < number00ImageViews.length; i++) {
-            updateImageViewBackground(number00ImageViews[i], number00TextViews[i], false);
-        }
-
-        view.setSelected(!isSelected);
-
-        for (int i = 0; i < numberFrameLayouts.length; i++) {
-            if (view == numberFrameLayouts[i]) {
-                updateImageViewBackground(numberImageViews[i], numberTextViews[i], !isSelected);
+        for (FrameLayout numberFrameLayout : numberFrameLayouts) {
+            if (view == numberFrameLayout) {
+                isNumberFrameLayout = true;
                 break;
             }
         }
-
-        for (int i = 0; i < number00FrameLayouts.length; i++) {
-            if (view == number00FrameLayouts[i]) {
-                updateImageViewBackground(number00ImageViews[i], number00TextViews[i], !isSelected);
+        for (FrameLayout number00FrameLayout : number00FrameLayouts) {
+            if (view == number00FrameLayout) {
+                isNumber00FrameLayout = true;
                 break;
+            }
+        }
+        if (isNumberFrameLayout) {
+            for (int i = 0; i < numberFrameLayouts.length; i++) {
+                FrameLayout frameLayout = numberFrameLayouts[i];
+                frameLayout.setSelected(frameLayout == view && !isSelected);
+                updateImageViewBackground(numberImageViews[i], numberTextViews[i], frameLayout.isSelected());
+            }
+        }
+        if (isNumber00FrameLayout) {
+            for (int i = 0; i < number00FrameLayouts.length; i++) {
+                FrameLayout frameLayout = number00FrameLayouts[i];
+                frameLayout.setSelected(frameLayout == view && !isSelected);
+                updateImageViewBackground(number00ImageViews[i], number00TextViews[i], frameLayout.isSelected());
             }
         }
 
@@ -168,15 +161,14 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
         } else if (view == evenButton || view == even2Button) {
             showNumbers(false);
         } else if (view == eraseButton || view == erase2Button) {
-            // NOT DONE YET
+            clearSelection(numberFrameLayouts, numberImageViews, numberTextViews);
+            clearSelection(number00FrameLayouts, number00ImageViews, number00TextViews);
         }
     }
-
     private void updateImageViewBackground(ImageView imageView, TextView textView, boolean selected) {
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(GradientDrawable.OVAL);
         gradientDrawable.setStroke(4, ContextCompat.getColor(requireContext(), R.color.stroke_color));
-
         if (selected) {
             gradientDrawable.setColors(new int[]{ContextCompat.getColor(requireContext(), R.color.gradient_start_color),
                     ContextCompat.getColor(requireContext(), R.color.gradient_end_color)});
@@ -185,20 +177,16 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
             gradientDrawable.setColor(ContextCompat.getColor(requireContext(), R.color.unselected_color));
             textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.black));
         }
-
         imageView.setBackground(gradientDrawable);
     }
-
     private void showAllNumbers() {
         for (FrameLayout frameLayout : numberFrameLayouts) {
             frameLayout.setVisibility(View.VISIBLE);
         }
-
         for (FrameLayout frameLayout : number00FrameLayouts) {
             frameLayout.setVisibility(View.VISIBLE);
         }
     }
-
     private void showNumbers(boolean showOdd) {
         for (int i = 0; i < numberFrameLayouts.length; i++) {
             FrameLayout frameLayout = numberFrameLayouts[i];
@@ -212,7 +200,6 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
                 frameLayout.setVisibility(View.VISIBLE);
             }
         }
-
         for (int i = 0; i < number00FrameLayouts.length; i++) {
             FrameLayout frameLayout = number00FrameLayouts[i];
             frameLayout.findViewById(getNumberTextViewId(i + 10));
@@ -230,5 +217,12 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
     private int getNumberTextViewId(int number) {
         int textViewId = getResources().getIdentifier("number" + number + "TextView", "id", requireActivity().getPackageName());
         return textViewId != 0 ? textViewId : R.id.number0TextView;
+    }
+
+    private void clearSelection(FrameLayout[] frameLayouts, ImageView[] imageViews, TextView[] textViews) {
+        for (int i = 0; i < frameLayouts.length; i++) {
+            frameLayouts[i].setSelected(false);
+            updateImageViewBackground(imageViews[i], textViews[i], false);
+        }
     }
 }
