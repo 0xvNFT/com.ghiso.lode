@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,7 +22,6 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
     private FrameLayout[] numberFrameLayouts;
     private ImageView[] numberImageViews;
     private TextView[] numberTextViews;
-
     private FrameLayout[] number00FrameLayouts;
     private ImageView[] number00ImageViews;
     private TextView[] number00TextViews;
@@ -29,6 +29,9 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
     private TextView totalMoneyTextView;
     private double totalMoney = 0.0;
     private SharedPreferences sharedPreferences;
+    private Button allButton, oddButton, evenButton, eraseButton,
+            all2Button, odd2Button, even2Button, erase2Button;
+
     public Option1Fragment() {
     }
 
@@ -37,84 +40,33 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_option1, container, false);
 
-        //FIRST
-        numberFrameLayouts = new FrameLayout[]{
-                rootView.findViewById(R.id.number0FrameLayout),
-                rootView.findViewById(R.id.number1FrameLayout),
-                rootView.findViewById(R.id.number2FrameLayout),
-                rootView.findViewById(R.id.number3FrameLayout),
-                rootView.findViewById(R.id.number4FrameLayout),
-                rootView.findViewById(R.id.number5FrameLayout),
-                rootView.findViewById(R.id.number6FrameLayout),
-                rootView.findViewById(R.id.number7FrameLayout),
-                rootView.findViewById(R.id.number8FrameLayout),
-                rootView.findViewById(R.id.number9FrameLayout)
-        };
+        numberFrameLayouts = new FrameLayout[10];
+        numberImageViews = new ImageView[10];
+        numberTextViews = new TextView[10];
+        number00FrameLayouts = new FrameLayout[10];
+        number00ImageViews = new ImageView[10];
+        number00TextViews = new TextView[10];
 
-        numberImageViews = new ImageView[]{
-                rootView.findViewById(R.id.image0ImageView),
-                rootView.findViewById(R.id.image1ImageView),
-                rootView.findViewById(R.id.image2ImageView),
-                rootView.findViewById(R.id.image3ImageView),
-                rootView.findViewById(R.id.image4ImageView),
-                rootView.findViewById(R.id.image5ImageView),
-                rootView.findViewById(R.id.image6ImageView),
-                rootView.findViewById(R.id.image7ImageView),
-                rootView.findViewById(R.id.image8ImageView),
-                rootView.findViewById(R.id.image9ImageView)
-        };
+        for (int i = 0; i < 10; i++) {
+            int numberId = getResources().getIdentifier("number" + i + "FrameLayout", "id", requireActivity().getPackageName());
+            int imageId = getResources().getIdentifier("image" + i + "ImageView", "id", requireActivity().getPackageName());
+            int textId = getResources().getIdentifier("number" + i + "TextView", "id", requireActivity().getPackageName());
 
-        numberTextViews = new TextView[]{
-                rootView.findViewById(R.id.number0TextView),
-                rootView.findViewById(R.id.number1TextView),
-                rootView.findViewById(R.id.number2TextView),
-                rootView.findViewById(R.id.number3TextView),
-                rootView.findViewById(R.id.number4TextView),
-                rootView.findViewById(R.id.number5TextView),
-                rootView.findViewById(R.id.number6TextView),
-                rootView.findViewById(R.id.number7TextView),
-                rootView.findViewById(R.id.number8TextView),
-                rootView.findViewById(R.id.number9TextView)
-        };
+            numberFrameLayouts[i] = rootView.findViewById(numberId);
+            numberImageViews[i] = rootView.findViewById(imageId);
+            numberTextViews[i] = rootView.findViewById(textId);
+        }
+
         //SECOND
-        number00FrameLayouts = new FrameLayout[]{
-                rootView.findViewById(R.id.number00FrameLayout),
-                rootView.findViewById(R.id.number01FrameLayout),
-                rootView.findViewById(R.id.number02FrameLayout),
-                rootView.findViewById(R.id.number03FrameLayout),
-                rootView.findViewById(R.id.number04FrameLayout),
-                rootView.findViewById(R.id.number05FrameLayout),
-                rootView.findViewById(R.id.number06FrameLayout),
-                rootView.findViewById(R.id.number07FrameLayout),
-                rootView.findViewById(R.id.number08FrameLayout),
-                rootView.findViewById(R.id.number09FrameLayout)
-        };
+        for (int i = 0; i < 10; i++) {
+            int numberId = getResources().getIdentifier("number" + String.format("%02d", i) + "FrameLayout", "id", requireActivity().getPackageName());
+            int imageId = getResources().getIdentifier("image" + String.format("%02d", i) + "ImageView", "id", requireActivity().getPackageName());
+            int textId = getResources().getIdentifier("number" + String.format("%02d", i) + "TextView", "id", requireActivity().getPackageName());
 
-        number00ImageViews = new ImageView[]{
-                rootView.findViewById(R.id.image00ImageView),
-                rootView.findViewById(R.id.image01ImageView),
-                rootView.findViewById(R.id.image02ImageView),
-                rootView.findViewById(R.id.image03ImageView),
-                rootView.findViewById(R.id.image04ImageView),
-                rootView.findViewById(R.id.image05ImageView),
-                rootView.findViewById(R.id.image06ImageView),
-                rootView.findViewById(R.id.image07ImageView),
-                rootView.findViewById(R.id.image08ImageView),
-                rootView.findViewById(R.id.image09ImageView)
-        };
-
-        number00TextViews = new TextView[]{
-                rootView.findViewById(R.id.number00TextView),
-                rootView.findViewById(R.id.number01TextView),
-                rootView.findViewById(R.id.number02TextView),
-                rootView.findViewById(R.id.number03TextView),
-                rootView.findViewById(R.id.number04TextView),
-                rootView.findViewById(R.id.number05TextView),
-                rootView.findViewById(R.id.number06TextView),
-                rootView.findViewById(R.id.number07TextView),
-                rootView.findViewById(R.id.number08TextView),
-                rootView.findViewById(R.id.number09TextView)
-        };
+            number00FrameLayouts[i] = rootView.findViewById(numberId);
+            number00ImageViews[i] = rootView.findViewById(imageId);
+            number00TextViews[i] = rootView.findViewById(textId);
+        }
 
         for (FrameLayout frameLayout : numberFrameLayouts) {
             frameLayout.setOnClickListener(this);
@@ -123,6 +75,7 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
         for (FrameLayout frameLayout : number00FrameLayouts) {
             frameLayout.setOnClickListener(this);
         }
+
         sharedPreferences = requireActivity().getSharedPreferences("MoneyInput", 0);
         totalMoneyTextView = rootView.findViewById(R.id.totalMoneyTextView);
         totalMoney = sharedPreferences.getFloat("TotalMoney", 0);
@@ -132,6 +85,26 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
             showMoneyInputDialog();
         }
 
+        // buttons
+        allButton = rootView.findViewById(R.id.all);
+        oddButton = rootView.findViewById(R.id.odd);
+        evenButton = rootView.findViewById(R.id.even);
+        eraseButton = rootView.findViewById(R.id.erase);
+        all2Button = rootView.findViewById(R.id.all2);
+        odd2Button = rootView.findViewById(R.id.odd2);
+        even2Button = rootView.findViewById(R.id.even2);
+        erase2Button = rootView.findViewById(R.id.erase2);
+
+        allButton.setOnClickListener(this);
+        oddButton.setOnClickListener(this);
+        evenButton.setOnClickListener(this);
+        eraseButton.setOnClickListener(this);
+        all2Button.setOnClickListener(this);
+        odd2Button.setOnClickListener(this);
+        even2Button.setOnClickListener(this);
+        erase2Button.setOnClickListener(this);
+
+        showAllNumbers();
 
         return rootView;
     }
@@ -187,6 +160,16 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
                 break;
             }
         }
+
+        if (view == allButton || view == all2Button) {
+            showAllNumbers();
+        } else if (view == oddButton || view == odd2Button) {
+            showNumbers(true);
+        } else if (view == evenButton || view == even2Button) {
+            showNumbers(false);
+        } else if (view == eraseButton || view == erase2Button) {
+            // NOT DONE YET
+        }
     }
 
     private void updateImageViewBackground(ImageView imageView, TextView textView, boolean selected) {
@@ -205,5 +188,47 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
 
         imageView.setBackground(gradientDrawable);
     }
-}
 
+    private void showAllNumbers() {
+        for (FrameLayout frameLayout : numberFrameLayouts) {
+            frameLayout.setVisibility(View.VISIBLE);
+        }
+
+        for (FrameLayout frameLayout : number00FrameLayouts) {
+            frameLayout.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void showNumbers(boolean showOdd) {
+        for (int i = 0; i < numberFrameLayouts.length; i++) {
+            FrameLayout frameLayout = numberFrameLayouts[i];
+            frameLayout.findViewById(getNumberTextViewId(i));
+
+            if (showOdd && i % 2 == 0) {
+                frameLayout.setVisibility(View.GONE);
+            } else if (!showOdd && i % 2 != 0) {
+                frameLayout.setVisibility(View.GONE);
+            } else {
+                frameLayout.setVisibility(View.VISIBLE);
+            }
+        }
+
+        for (int i = 0; i < number00FrameLayouts.length; i++) {
+            FrameLayout frameLayout = number00FrameLayouts[i];
+            frameLayout.findViewById(getNumberTextViewId(i + 10));
+
+            if (showOdd && (i + 10) % 2 == 0) {
+                frameLayout.setVisibility(View.GONE);
+            } else if (!showOdd && (i + 10) % 2 != 0) {
+                frameLayout.setVisibility(View.GONE);
+            } else {
+                frameLayout.setVisibility(View.VISIBLE);
+            }
+        }
+    }
+
+    private int getNumberTextViewId(int number) {
+        int textViewId = getResources().getIdentifier("number" + number + "TextView", "id", requireActivity().getPackageName());
+        return textViewId != 0 ? textViewId : R.id.number0TextView;
+    }
+}

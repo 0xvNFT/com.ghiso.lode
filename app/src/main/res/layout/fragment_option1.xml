@@ -31,14 +31,10 @@
                 android:layout_marginEnd="20dp" />
         </FrameLayout>
 
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp">
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="20dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -51,7 +47,7 @@
                     tools:ignore="ContentDescription" />
 
                 <Button
-                    android:id="@+id/button1"
+                    android:id="@+id/all"
                     android:layout_width="61dp"
                     android:layout_height="35dp"
                     android:layout_marginEnd="5dp"
@@ -59,23 +55,7 @@
                     android:textSize="11sp" />
 
                 <Button
-                    android:id="@+id/button2"
-                    android:layout_width="41dp"
-                    android:layout_height="35dp"
-                    android:layout_marginEnd="5dp"
-                    android:text="@string/t_i"
-                    android:textSize="11sp" />
-
-                <Button
-                    android:id="@+id/button3"
-                    android:layout_width="41dp"
-                    android:layout_height="35dp"
-                    android:layout_marginEnd="5dp"
-                    android:text="@string/x_u"
-                    android:textSize="11sp" />
-
-                <Button
-                    android:id="@+id/button4"
+                    android:id="@+id/odd"
                     android:layout_width="37dp"
                     android:layout_height="35dp"
                     android:layout_marginEnd="5dp"
@@ -83,7 +63,7 @@
                     android:textSize="11sp" />
 
                 <Button
-                    android:id="@+id/button5"
+                    android:id="@+id/even"
                     android:layout_width="55dp"
                     android:layout_height="35dp"
                     android:layout_marginEnd="5dp"
@@ -91,14 +71,14 @@
                     android:textSize="11sp" />
 
                 <Button
-                    android:id="@+id/button6"
+                    android:id="@+id/erase"
                     android:layout_width="48dp"
                     android:layout_height="35dp"
                     android:layout_marginEnd="5dp"
                     android:text="@string/x_a"
                     android:textSize="11sp" />
             </LinearLayout>
-        </HorizontalScrollView>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -159,7 +139,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp">
-
+                <!---->
                 <ImageView
                     android:id="@+id/image2ImageView"
                     android:layout_width="50dp"
@@ -349,53 +329,31 @@
             </FrameLayout>
         </LinearLayout>
 
-        <HorizontalScrollView
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp">
+            android:layout_margin="20dp"
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/unit"
+                android:layout_width="50dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:src="@drawable/unit"
+                tools:ignore="ContentDescription" />
 
-                <ImageView
-                    android:id="@+id/unit"
-                    android:layout_width="50dp"
-                    android:layout_height="35dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:src="@drawable/unit"
-                    tools:ignore="ContentDescription" />
-
-                <Button
-                    android:id="@+id/button01"
-                    android:layout_width="61dp"
+            <Button
+                android:id="@+id/all2"
+                android:layout_width="61dp"
                     android:layout_height="35dp"
                     android:layout_marginEnd="5dp"
                     android:text="@string/t_t_c"
                     android:textSize="11sp" />
 
                 <Button
-                    android:id="@+id/button02"
-                    android:layout_width="41dp"
-                    android:layout_height="35dp"
-                    android:layout_marginEnd="5dp"
-                    android:text="@string/t_i"
-                    android:textSize="11sp" />
-
-                <Button
-                    android:id="@+id/button03"
-                    android:layout_width="41dp"
-                    android:layout_height="35dp"
-                    android:layout_marginEnd="5dp"
-                    android:text="@string/x_u"
-                    android:textSize="11sp" />
-
-                <Button
-                    android:id="@+id/button04"
+                    android:id="@+id/odd2"
                     android:layout_width="37dp"
                     android:layout_height="35dp"
                     android:layout_marginEnd="5dp"
@@ -403,7 +361,7 @@
                     android:textSize="11sp" />
 
                 <Button
-                    android:id="@+id/button05"
+                    android:id="@+id/even2"
                     android:layout_width="55dp"
                     android:layout_height="35dp"
                     android:layout_marginEnd="5dp"
@@ -411,14 +369,13 @@
                     android:textSize="11sp" />
 
                 <Button
-                    android:id="@+id/button06"
+                    android:id="@+id/erase2"
                     android:layout_width="46dp"
                     android:layout_height="35dp"
                     android:layout_marginEnd="5dp"
                     android:text="@string/x_a"
                     android:textSize="11sp" />
             </LinearLayout>
-        </HorizontalScrollView>
 
         <LinearLayout
             android:layout_width="match_parent"
