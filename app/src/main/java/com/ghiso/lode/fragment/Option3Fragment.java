@@ -18,12 +18,15 @@ import com.ghiso.lode.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 public class Option3Fragment extends Fragment {
 
     private RadioGroup radioGroup;
     private TextView[] numberTextViews;
+    private TextView totalMoneyTextView;
+    private double totalMoney = 0.0;
 
     public Option3Fragment() {
     }
@@ -31,7 +34,16 @@ public class Option3Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_option3, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_option3, container, false);
+
+        totalMoneyTextView = rootView.findViewById(R.id.totalMoneyTextView);
+
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            totalMoney = bundle.getDouble("totalMoney");
+        }
+        totalMoneyTextView.setText(String.format(Locale.getDefault(), "%.2f", totalMoney));
+        return rootView;
     }
 
     @Override

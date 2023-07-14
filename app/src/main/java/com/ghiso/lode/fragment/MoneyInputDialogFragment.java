@@ -27,19 +27,19 @@ public class MoneyInputDialogFragment extends DialogFragment {
     private Button confirmButton;
     private MoneyInputListener moneyInputListener;
     private SharedPreferences sharedPreferences;
+    private boolean shouldShowDialog = false;
 
     public MoneyInputDialogFragment() {
     }
-
     public static MoneyInputDialogFragment newInstance() {
         return new MoneyInputDialogFragment();
     }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(DialogFragment.STYLE_NORMAL, R.style.DialogStyle);
         sharedPreferences = requireActivity().getSharedPreferences("MoneyInput", 0);
+        shouldShowDialog = !sharedPreferences.contains("TotalMoney");
     }
 
     @Override
@@ -68,7 +68,6 @@ public class MoneyInputDialogFragment extends DialogFragment {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
@@ -81,6 +80,9 @@ public class MoneyInputDialogFragment extends DialogFragment {
         double savedMoney = sharedPreferences.getFloat("MoneyValue", 0);
         moneyEditText.setText(String.valueOf(savedMoney));
         validateInput();
+        if (!shouldShowDialog) {
+            dismiss();
+        }
     }
 
     @Override

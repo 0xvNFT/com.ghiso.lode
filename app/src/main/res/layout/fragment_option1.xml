@@ -670,6 +670,15 @@
             </FrameLayout>
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/showResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
         <include layout="@layout/chip_layout" />
 
     </LinearLayout>

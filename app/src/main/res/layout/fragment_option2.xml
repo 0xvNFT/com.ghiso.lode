@@ -6,13 +6,37 @@
     android:background="#FAFAFA"
     android:orientation="vertical">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/t_l_c_c_1_n_99_5"
+            android:textAlignment="textEnd" />
+
+        <TextView
+            android:id="@+id/totalMoneyTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp" />
+    </FrameLayout>
+
     <EditText
         android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/textview_background"
+        android:layout_marginTop="50dp"
         android:hint="@string/how_to_play"
         android:inputType="number"
+        android:autofillHints=""
         android:padding="20dp" />
 
     <include

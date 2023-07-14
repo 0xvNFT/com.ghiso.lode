@@ -1,5 +1,6 @@
 package com.ghiso.lode.fragment;
 
+import android.content.SharedPreferences;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -27,7 +28,7 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
 
     private TextView totalMoneyTextView;
     private double totalMoney = 0.0;
-
+    private SharedPreferences sharedPreferences;
     public Option1Fragment() {
     }
 
@@ -122,13 +123,21 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
         for (FrameLayout frameLayout : number00FrameLayouts) {
             frameLayout.setOnClickListener(this);
         }
-
+        sharedPreferences = requireActivity().getSharedPreferences("MoneyInput", 0);
         totalMoneyTextView = rootView.findViewById(R.id.totalMoneyTextView);
-        if (savedInstanceState == null) {
+        totalMoney = sharedPreferences.getFloat("TotalMoney", 0);
+        totalMoneyTextView.setText(String.format(Locale.getDefault(), "%.2f", totalMoney));
+
+        if (savedInstanceState == null && shouldShowMoneyInputDialog()) {
             showMoneyInputDialog();
         }
 
+
         return rootView;
+    }
+
+    private boolean shouldShowMoneyInputDialog() {
+        return !sharedPreferences.contains("TotalMoney");
     }
 
     private void showMoneyInputDialog() {
