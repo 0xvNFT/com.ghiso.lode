@@ -25,8 +25,7 @@ public class Option3Fragment extends Fragment {
 
     private RadioGroup radioGroup;
     private TextView[] numberTextViews;
-    private TextView totalMoneyTextView;
-    private double totalMoney = 0.0;
+
 
     public Option3Fragment() {
     }
@@ -36,14 +35,11 @@ public class Option3Fragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_option3, container, false);
 
-        totalMoneyTextView = rootView.findViewById(R.id.totalMoneyTextView);
 
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            totalMoney = bundle.getDouble("totalMoney");
-        }
-        totalMoneyTextView.setText(String.format(Locale.getDefault(), "%.2f", totalMoney));
-        return rootView;
+
+
+
+       return  rootView;
     }
 
     @Override
@@ -112,7 +108,48 @@ public class Option3Fragment extends Fragment {
                 view.findViewById(R.id.num57),
                 view.findViewById(R.id.num58),
                 view.findViewById(R.id.num59),
-                view.findViewById(R.id.num60)
+                view.findViewById(R.id.num60),
+                view.findViewById(R.id.num61),
+                view.findViewById(R.id.num62),
+                view.findViewById(R.id.num63),
+                view.findViewById(R.id.num64),
+                view.findViewById(R.id.num65),
+                view.findViewById(R.id.num66),
+                view.findViewById(R.id.num67),
+                view.findViewById(R.id.num68),
+                view.findViewById(R.id.num69),
+                view.findViewById(R.id.num70),
+                view.findViewById(R.id.num71),
+                view.findViewById(R.id.num72),
+                view.findViewById(R.id.num73),
+                view.findViewById(R.id.num74),
+                view.findViewById(R.id.num75),
+                view.findViewById(R.id.num76),
+                view.findViewById(R.id.num77),
+                view.findViewById(R.id.num78),
+                view.findViewById(R.id.num79),
+                view.findViewById(R.id.num80),
+                view.findViewById(R.id.num81),
+                view.findViewById(R.id.num82),
+                view.findViewById(R.id.num83),
+                view.findViewById(R.id.num84),
+                view.findViewById(R.id.num85),
+                view.findViewById(R.id.num86),
+                view.findViewById(R.id.num87),
+                view.findViewById(R.id.num88),
+                view.findViewById(R.id.num89),
+                view.findViewById(R.id.num90),
+                view.findViewById(R.id.num91),
+                view.findViewById(R.id.num92),
+                view.findViewById(R.id.num93),
+                view.findViewById(R.id.num94),
+                view.findViewById(R.id.num95),
+                view.findViewById(R.id.num96),
+                view.findViewById(R.id.num97),
+                view.findViewById(R.id.num98),
+                view.findViewById(R.id.num99),
+                view.findViewById(R.id.num100),
+
         };
 
         radioGroup.setOnCheckedChangeListener((radioGroup, checkedId) -> {
@@ -173,7 +210,7 @@ public class Option3Fragment extends Fragment {
 
     private List<Integer> generateEvenNumbersList() {
         List<Integer> numbers = new ArrayList<>();
-        for (int i = 2; i <= 60; i += 2) {
+        for (int i = 2; i <= 100; i += 2) {
             numbers.add(i);
         }
         return numbers;
@@ -181,7 +218,7 @@ public class Option3Fragment extends Fragment {
 
     private List<Integer> generateOddNumbersList() {
         List<Integer> numbers = new ArrayList<>();
-        for (int i = 1; i <= 59; i += 2) {
+        for (int i = 1; i <= 100; i += 2) {
             numbers.add(i);
         }
         return numbers;
@@ -189,7 +226,7 @@ public class Option3Fragment extends Fragment {
 
     private List<Integer> generateAllNumbersList() {
         List<Integer> numbers = new ArrayList<>();
-        for (int i = 1; i <= 60; i++) {
+        for (int i = 1; i <= 100; i++) {
             numbers.add(i);
         }
         return numbers;

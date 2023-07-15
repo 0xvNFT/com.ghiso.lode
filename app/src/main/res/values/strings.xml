@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lotto</string>
+    <string name="app_name">Ghi số lô đề Online</string>
     <string name="loading">Loading…</string>
     <string name="x_s_mi_n_b_c_m_th_ng_h_ng_ng_y">Xổ số Miền Bắc mở thưởng hàng ngày</string>
     <string name="select_number">Chọn số</string>
@@ -23,7 +23,8 @@
     <string name="x_a">Xóa</string>
     <string name="t_l_c_c_1_n_99_5">Tỉ lệ cược 1 ăn 99.5</string>
     <string name="nh">ĐÁNH ĐỀ</string>
-    <string name="how_to_play">Cách chơi:\nGiữa mỗi cược cần phân cách bởi dấu ; hoặc dấu , hoặc thanh dọc | hoặc khoảng trống\nVí dụ: 01,02,03 hoặc 01 02 03 hoặc 01;02;03 hoặc 01|02|03</string>
+    <string name="how_to_play">Cách chơi:\nGiữa mỗi cược cần phân cách bởi dấu ; hoặc dấu , hoặc thanh dọc | hoặc khoảng trống\nVí dụ: 01,02,03 hoặc 01 02 03 hoặc 01;02;03 hoặc 01|02|03
+    \n Xin vui lòng chọn số !</string>
     <string name="random">Ngẫu nhiên</string>
     <string name="even">Chẵn</string>
     <string name="odd">Lẻ</string>
@@ -89,7 +90,7 @@
     <string name="_60">60</string>
     <string name="enter_money">Nhập tiền</string>
     <string name="confirm">Xác nhận</string>
-    <string name="place_a_bet">ĐẶT CƯỢC</string>
+    <string name="place_a_bet">ĐẶT</string>
     <string name="reset">CÀI LẠI</string>
 
 
