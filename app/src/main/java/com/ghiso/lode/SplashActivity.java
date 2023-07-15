@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 @SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
 
-    private static final int SPLASH_TIMEOUT = 500;
+    private static final int SPLASH_TIMEOUT = 900;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

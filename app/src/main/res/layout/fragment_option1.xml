@@ -9,9 +9,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/totalA"
+                android:layout_width="120dp"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -22,14 +32,8 @@
                 android:text="@string/t_l_c_c_1_n_99_5"
                 android:textAlignment="textEnd" />
 
-            <TextView
-                android:id="@+id/totalMoneyTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="20dp" />
-        </FrameLayout>
+
+        </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -94,19 +98,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp">
 
-                <ImageView
-                    android:id="@+id/image0ImageView"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/ellipse_unselected"
-                    tools:ignore="ContentDescription" />
-
                 <TextView
                     android:id="@+id/number0TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:text="@string/_0"
+                    android:gravity="center"
+                    android:background="@drawable/ellipse_unselected"
                     android:textColor="@color/black"
                     android:textSize="30sp" />
             </FrameLayout>
@@ -117,19 +116,15 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp">
 
-                <ImageView
-                    android:id="@+id/image1ImageView"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/ellipse_unselected"
-                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:id="@+id/number1TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:text="@string/_1"
+                    android:gravity="center"
+                    android:background="@drawable/ellipse_unselected"
                     android:textColor="@color/black"
                     android:textSize="30sp" />
             </FrameLayout>
@@ -139,20 +134,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp">
-                <!---->
-                <ImageView
-                    android:id="@+id/image2ImageView"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/ellipse_unselected"
-                    tools:ignore="ContentDescription" />
-
                 <TextView
                     android:id="@+id/number2TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:text="@string/_2"
+                    android:gravity="center"
+                    android:background="@drawable/ellipse_unselected"
                     android:textColor="@color/black"
                     android:textSize="30sp" />
             </FrameLayout>
@@ -163,19 +152,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp">
 
-                <ImageView
-                    android:id="@+id/image3ImageView"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/ellipse_unselected"
-                    tools:ignore="ContentDescription" />
-
                 <TextView
                     android:id="@+id/number3TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:text="@string/_3"
+                    android:gravity="center"
+                    android:background="@drawable/ellipse_unselected"
                     android:textColor="@color/black"
                     android:textSize="30sp" />
             </FrameLayout>
@@ -186,19 +170,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp">
 
-                <ImageView
-                    android:id="@+id/image4ImageView"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/ellipse_unselected"
-                    tools:ignore="ContentDescription" />
-
                 <TextView
                     android:id="@+id/number4TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:text="@string/_4"
+                    android:gravity="center"
+                    android:background="@drawable/ellipse_unselected"
                     android:textColor="@color/black"
                     android:textSize="30sp" />
             </FrameLayout>
@@ -218,22 +197,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp">
-
-                <ImageView
-                    android:id="@+id/image5ImageView"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/ellipse_unselected"
-                    tools:ignore="ContentDescription" />
-
                 <TextView
                     android:id="@+id/number5TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:text="@string/_5"
+                    android:gravity="center"
+                    android:background="@drawable/ellipse_unselected"
                     android:textColor="@color/black"
-                    android:textSize="30sp" />
+                    android:textSize="30sp"/>
             </FrameLayout>
 
             <FrameLayout
@@ -242,19 +215,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp">
 
-                <ImageView
-                    android:id="@+id/image6ImageView"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/ellipse_unselected"
-                    tools:ignore="ContentDescription" />
-
                 <TextView
                     android:id="@+id/number6TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:text="@string/_6"
+                    android:gravity="center"
+                    android:background="@drawable/ellipse_unselected"
                     android:textColor="@color/black"
                     android:textSize="30sp" />
             </FrameLayout>
@@ -265,19 +233,15 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp">
 
-                <ImageView
-                    android:id="@+id/image7ImageView"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/ellipse_unselected"
-                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:id="@+id/number7TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:text="@string/_7"
+                    android:gravity="center"
+                    android:background="@drawable/ellipse_unselected"
                     android:textColor="@color/black"
                     android:textSize="30sp" />
             </FrameLayout>
@@ -288,19 +252,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp">
 
-                <ImageView
-                    android:id="@+id/image8ImageView"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/ellipse_unselected"
-                    tools:ignore="ContentDescription" />
-
                 <TextView
                     android:id="@+id/number8TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:text="@string/_8"
+                    android:gravity="center"
+                    android:background="@drawable/ellipse_unselected"
                     android:textColor="@color/black"
                     android:textSize="30sp" />
             </FrameLayout>
@@ -311,19 +270,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp">
 
-                <ImageView
-                    android:id="@+id/image9ImageView"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/ellipse_unselected"
-                    tools:ignore="ContentDescription" />
-
                 <TextView
                     android:id="@+id/number9TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:text="@string/_9"
+                    android:gravity="center"
+                    android:background="@drawable/ellipse_unselected"
                     android:textColor="@color/black"
                     android:textSize="30sp" />
             </FrameLayout>
@@ -391,19 +345,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp">
 
-                <ImageView
-                    android:id="@+id/image00ImageView"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/ellipse_unselected"
-                    tools:ignore="ContentDescription" />
-
                 <TextView
                     android:id="@+id/number00TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:text="@string/_0"
+                    android:gravity="center"
+                    android:background="@drawable/ellipse_unselected"
                     android:textColor="@color/black"
                     android:textSize="30sp" />
             </FrameLayout>
@@ -414,21 +363,16 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp">
 
-                <ImageView
-                    android:id="@+id/image01ImageView"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/ellipse_unselected"
-                    tools:ignore="ContentDescription" />
-
                 <TextView
                     android:id="@+id/number01TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:text="@string/_1"
+                    android:gravity="center"
+                    android:background="@drawable/ellipse_unselected"
                     android:textColor="@color/black"
-                    android:textSize="30sp" />
+                    android:textSize="30sp"/>
             </FrameLayout>
 
             <FrameLayout
@@ -437,19 +381,15 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp">
 
-                <ImageView
-                    android:id="@+id/image02ImageView"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/ellipse_unselected"
-                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:id="@+id/number02TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:text="@string/_2"
+                    android:gravity="center"
+                    android:background="@drawable/ellipse_unselected"
                     android:textColor="@color/black"
                     android:textSize="30sp" />
             </FrameLayout>
@@ -460,19 +400,16 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp">
 
-                <ImageView
-                    android:id="@+id/image03ImageView"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/ellipse_unselected"
-                    tools:ignore="ContentDescription" />
+
 
                 <TextView
                     android:id="@+id/number03TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:text="@string/_3"
+                    android:gravity="center"
+                    android:background="@drawable/ellipse_unselected"
                     android:textColor="@color/black"
                     android:textSize="30sp" />
             </FrameLayout>
@@ -483,19 +420,15 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp">
 
-                <ImageView
-                    android:id="@+id/image04ImageView"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/ellipse_unselected"
-                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:id="@+id/number04TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:text="@string/_4"
+                    android:gravity="center"
+                    android:background="@drawable/ellipse_unselected"
                     android:textColor="@color/black"
                     android:textSize="30sp" />
             </FrameLayout>
@@ -516,19 +449,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp">
 
-                <ImageView
-                    android:id="@+id/image05ImageView"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/ellipse_unselected"
-                    tools:ignore="ContentDescription" />
-
                 <TextView
                     android:id="@+id/number05TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:text="@string/_5"
+                    android:gravity="center"
+                    android:background="@drawable/ellipse_unselected"
                     android:textColor="@color/black"
                     android:textSize="30sp" />
             </FrameLayout>
@@ -539,19 +467,15 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp">
 
-                <ImageView
-                    android:id="@+id/image06ImageView"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/ellipse_unselected"
-                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:id="@+id/number06TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:text="@string/_6"
+                    android:gravity="center"
+                    android:background="@drawable/ellipse_unselected"
                     android:textColor="@color/black"
                     android:textSize="30sp" />
             </FrameLayout>
@@ -562,21 +486,17 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp">
 
-                <ImageView
-                    android:id="@+id/image07ImageView"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/ellipse_unselected"
-                    tools:ignore="ContentDescription,TooManyViews" />
 
                 <TextView
                     android:id="@+id/number07TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:text="@string/_7"
+                    android:gravity="center"
+                    android:background="@drawable/ellipse_unselected"
                     android:textColor="@color/black"
-                    android:textSize="30sp" />
+                    android:textSize="30sp"/>
             </FrameLayout>
 
             <FrameLayout
@@ -586,19 +506,14 @@
                 android:layout_margin="5dp"
                 tools:ignore="TooManyViews">
 
-                <ImageView
-                    android:id="@+id/image08ImageView"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/ellipse_unselected"
-                    tools:ignore="ContentDescription,TooManyViews" />
-
                 <TextView
                     android:id="@+id/number08TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:text="@string/_8"
+                    android:gravity="center"
+                    android:background="@drawable/ellipse_unselected"
                     android:textColor="@color/black"
                     android:textSize="30sp" />
             </FrameLayout>
@@ -609,26 +524,32 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp">
 
-                <ImageView
-                    android:id="@+id/image09ImageView"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/ellipse_unselected"
-                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:id="@+id/number09TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:text="@string/_9"
+                    android:gravity="center"
+                    android:background="@drawable/ellipse_unselected"
                     android:textColor="@color/black"
                     android:textSize="30sp" />
             </FrameLayout>
         </LinearLayout>
 
         <TextView
-            android:id="@+id/showResult"
+            android:visibility="gone"
+            android:id="@+id/a"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/b"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"

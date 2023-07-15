@@ -1,166 +1,51 @@
 package com.ghiso.lode.fragment;
 
-import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-
 import com.ghiso.lode.R;
+import java.util.Random;
+public class Option1Fragment extends Fragment {
 
-import java.util.Locale;
 
-public class Option1Fragment extends Fragment implements View.OnClickListener {
-    private FrameLayout[] numberFrameLayouts;
-    private ImageView[] numberImageViews;
-    private TextView[] numberTextViews;
-    private FrameLayout[] number00FrameLayouts;
-    private ImageView[] number00ImageViews;
-    private TextView[] number00TextViews;
 
-    private TextView totalMoneyTextView;
-    private double totalMoney = 10000;
-    private SharedPreferences sharedPreferences;
+
+    ImageView x1, x3, x5, x10;
+    int  a=0, a_dum,moli;
+    int monet, a_monkey;
     private Button allButton, oddButton, evenButton, eraseButton,
             all2Button, odd2Button, even2Button, erase2Button;
-    ImageView x1,x3,x5,x10;
-    int x_a,x_b,a;
-    int monet, a_monkey;
-    Button cuoc,resset;
+    Button cuoc, resset;
+    private static TextView[] text_Old = new TextView[10];
+    private static TextView[] text_Unit = new TextView[10];
+    TextView selectedOld = null;
+    TextView selectedUnit = null;
+    String selected_old,selected_Unit, sum, so_dum;
+    Random random=new Random();
+    TextView showtiime,showRandom;
 
-
-    public Option1Fragment() {
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_option1, container, false);
-        x1=rootView.findViewById(R.id.x1);
-        x3=rootView.findViewById(R.id.x3);
-        x5=rootView.findViewById(R.id.x5);
-        x10=rootView.findViewById(R.id.x10);
 
-        cuoc=rootView.findViewById(R.id.placeBet);
-        resset=rootView.findViewById(R.id.resetButton);
-        totalMoneyTextView = rootView.findViewById(R.id.totalMoneyTextView);
-
-       monet=2500;
-        a_monkey=monet;
-        totalMoneyTextView.setText("0");
-        x1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                a_monkey=monet;
-                x3.setVisibility(View.GONE);
-                x5.setVisibility(View.GONE);
-                x10.setVisibility(View.GONE);
-                totalMoneyTextView.setText(""+a_monkey);
-            }
-        });
-        x3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                a_monkey=monet*3;
-                x1.setVisibility(View.GONE);
-                x5.setVisibility(View.GONE);
-                x10.setVisibility(View.GONE);
-                totalMoneyTextView.setText(""+a_monkey);
-            }
-        });
-        x5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                a_monkey=monet*5;
-                x1.setVisibility(View.GONE);
-                x3.setVisibility(View.GONE);
-                x10.setVisibility(View.GONE);
-                totalMoneyTextView.setText(""+a_monkey);
-            }
-        });
-        x10.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                a_monkey=monet*10;
-                x1.setVisibility(View.GONE);
-                x3.setVisibility(View.GONE);
-                x5.setVisibility(View.GONE);
-                totalMoneyTextView.setText(""+a_monkey);
-            }
-        });
-
-        cuoc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        resset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                x1.setVisibility(View.VISIBLE);
-                x3.setVisibility(View.VISIBLE);
-                x5.setVisibility(View.VISIBLE);
-                x10.setVisibility(View.VISIBLE);
-                totalMoneyTextView.setText(""+0);
-
-            }
-        });
-
-
-        numberFrameLayouts = new FrameLayout[10];
-        numberImageViews = new ImageView[10];
-        numberTextViews = new TextView[10];
-        number00FrameLayouts = new FrameLayout[10];
-        number00ImageViews = new ImageView[10];
-        number00TextViews = new TextView[10];
-
-        for (int i = 0; i < 10; i++) {
-            int numberId = getResources().getIdentifier("number" + i + "FrameLayout", "id", requireActivity().getPackageName());
-            int imageId = getResources().getIdentifier("image" + i + "ImageView", "id", requireActivity().getPackageName());
-            int textId = getResources().getIdentifier("number" + i + "TextView", "id", requireActivity().getPackageName());
-
-            numberFrameLayouts[i] = rootView.findViewById(numberId);
-            numberImageViews[i] = rootView.findViewById(imageId);
-            numberTextViews[i] = rootView.findViewById(textId);
-        }
-
-        //SECOND
-        for (int i = 0; i < 10; i++) {
-            int numberId = getResources().getIdentifier("number" + String.format("%02d", i) + "FrameLayout", "id", requireActivity().getPackageName());
-            int imageId = getResources().getIdentifier("image" + String.format("%02d", i) + "ImageView", "id", requireActivity().getPackageName());
-            int textId = getResources().getIdentifier("number" + String.format("%02d", i) + "TextView", "id", requireActivity().getPackageName());
-
-            number00FrameLayouts[i] = rootView.findViewById(numberId);
-            number00ImageViews[i] = rootView.findViewById(imageId);
-            number00TextViews[i] = rootView.findViewById(textId);
-
-        }
-
-        for (FrameLayout frameLayout : numberFrameLayouts) {
-            frameLayout.setOnClickListener(this);
-        }
-
-        for (FrameLayout frameLayout1 : number00FrameLayouts) {
-            frameLayout1.setOnClickListener(this);
-        }
-
-//        sharedPreferences = requireActivity().getSharedPreferences("MoneyInput", 0);
-//        totalMoneyTextView = rootView.findViewById(R.id.totalMoneyTextView);
-//        totalMoney = sharedPreferences.getFloat("TotalMoney", 0);
-//        totalMoneyTextView.setText(String.format(Locale.getDefault(), "%.2f", totalMoney));
+        x1 = rootView.findViewById(R.id.x1);
+        x3 = rootView.findViewById(R.id.x3);
+        x5 = rootView.findViewById(R.id.x5);
+        x10 = rootView.findViewById(R.id.x10);
 
 
 
@@ -169,156 +54,360 @@ public class Option1Fragment extends Fragment implements View.OnClickListener {
         oddButton = rootView.findViewById(R.id.odd);
         evenButton = rootView.findViewById(R.id.even);
         eraseButton = rootView.findViewById(R.id.erase);
+
         all2Button = rootView.findViewById(R.id.all2);
         odd2Button = rootView.findViewById(R.id.odd2);
         even2Button = rootView.findViewById(R.id.even2);
         erase2Button = rootView.findViewById(R.id.erase2);
+        showtiime=rootView.findViewById(R.id.a);
+        showRandom=rootView.findViewById(R.id.b);
 
-        // buttons old
-
-        allButton.setOnClickListener(this);
-        oddButton.setOnClickListener(this);
-        evenButton.setOnClickListener(this);
-        eraseButton.setOnClickListener(this);
-
-        // buttons units
-        all2Button.setOnClickListener(this);
-        odd2Button.setOnClickListener(this);
-        even2Button.setOnClickListener(this);
-        erase2Button.setOnClickListener(this);
-
-        showAllNumbers();
-        for (FrameLayout frameLayout : number00FrameLayouts) {
-            frameLayout.setVisibility(View.VISIBLE);
+        for (int i = 0; i < 10; i++) {
+            int textId = getResources().getIdentifier("number" + i + "TextView", "id", requireActivity().getPackageName());
+            text_Old[i] = rootView.findViewById(textId);
         }
+        for (int i = 0; i < 10; i++) {
+            int id_Unit = getResources().getIdentifier("number" + String.format("%02d", i) + "TextView", "id", requireActivity().getPackageName());
+            text_Unit[i] = rootView.findViewById(id_Unit);
+        }
+        //view click Old
+        View.OnClickListener onclickOld = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView click_text = (TextView) v;
+                // nut ddk chon , huy nut
+                if (selectedOld == null) {
+                    selectedOld = click_text;
+                    selectedOld.setBackgroundResource(R.drawable.ellipse_selected);
+                } else if (selectedOld == click_text) {
+                    selectedOld.setBackgroundResource(R.drawable.ellipse_unselected);
+                    selectedOld = null;
+
+                } else {
+                    selectedOld.setBackgroundResource(R.drawable.ellipse_unselected);
+                    selectedOld = click_text;
+                    selectedOld.setBackgroundResource(R.drawable.ellipse_selected);
+                }
+                // lay gia tri nut
+                if (selectedOld != null) {
+//                    selected_old = selectedOld.getText().toString();
+                }else {
+                    Toast.makeText(requireContext(), "Bạn chưa chọn hàng đơn chục", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        };
+        View.OnClickListener onclickUnit = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView click_text = (TextView) v;
+                // nut ddk chon , huy nut
+                if (selectedUnit == null) {
+                    selectedUnit = click_text;
+                    selectedUnit.setBackgroundResource(R.drawable.ellipse_selected);
+                } else if (selectedUnit == click_text) {
+                    selectedUnit.setBackgroundResource(R.drawable.ellipse_unselected);
+                    selectedUnit = null;
+
+                } else {
+                    selectedUnit.setBackgroundResource(R.drawable.ellipse_unselected);
+                    selectedUnit = click_text;
+                    selectedUnit.setBackgroundResource(R.drawable.ellipse_selected);
+                }
+                // lay gia tri nut
+                if (selectedUnit != null) {
+                 selected_Unit = selectedUnit.getText().toString();
+                }else {
+                    Toast.makeText(requireContext(), "Bạn chưa chọn hàng đơn vị", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        };
+
+
+        for (TextView number_Old : text_Old) {
+            number_Old.setOnClickListener(onclickOld);
+
+        }
+        for (TextView number_Unit : text_Unit) {
+            number_Unit.setOnClickListener(onclickUnit);
+
+        }
+        allButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < text_Old.length; i++) {
+                    text_Old[i].setVisibility(View.VISIBLE);
+
+                }
+            }
+        });
+        all2Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < text_Unit.length; i++) {
+                    text_Unit[i].setVisibility(View.VISIBLE);
+                }
+            }
+        });
+        oddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                le_Old(text_Old);
+            }
+        });
+        odd2Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                le_Unit(text_Unit);
+            }
+        });
+        evenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Chan_Old(text_Old);
+            }
+        });
+        even2Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Chan_Unit(text_Unit);
+            }
+        });
+        eraseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for(int i=0; i<10;i++){
+                    text_Old[i].setBackgroundResource(R.drawable.ellipse_unselected);
+                }
+            }
+        });
+        erase2Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for(int i=0; i<10;i++){
+                    selectedUnit = null;
+                    text_Unit[i].setBackgroundResource(R.drawable.ellipse_unselected);
+                }
+            }
+        });
+
+
+
+        cuoc = rootView.findViewById(R.id.placeBet);
+        resset = rootView.findViewById(R.id.resetButton);
+
+        monet = 2500;
+        a_monkey = monet;
+
+        x1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                a_monkey = monet;
+
+                x3.setVisibility(View.GONE);
+                x5.setVisibility(View.GONE);
+                x10.setVisibility(View.GONE);}
+
+        });
+        x3.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                a_monkey = monet * 3;
+
+                x1.setVisibility(View.GONE);
+                x5.setVisibility(View.GONE);
+                x10.setVisibility(View.GONE);}
+
+        });
+        x5.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                a_monkey = monet * 5;
+
+                x1.setVisibility(View.GONE);
+                x3.setVisibility(View.GONE);
+                x10.setVisibility(View.GONE);}
+
+
+        });
+        x10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                a_monkey = monet * 10;
+                x1.setVisibility(View.GONE);
+                x3.setVisibility(View.GONE);
+                x5.setVisibility(View.GONE);
+            }
+        });
+
+
+        resset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                x1.setVisibility(View.VISIBLE);
+                x3.setVisibility(View.VISIBLE);
+                x5.setVisibility(View.VISIBLE);
+                x10.setVisibility(View.VISIBLE);
+                cuoc.setVisibility(View.VISIBLE);
+                showtiime.setVisibility(View.GONE);
+                showRandom.setVisibility(View.GONE);
+                x1.setEnabled(true);
+                x3.setEnabled(true);
+                x5.setEnabled(true);
+                x10.setEnabled(true);
+
+                for(int i=0; i<10;i++){
+                    text_Unit[i].setBackgroundResource(R.drawable.ellipse_unselected);
+                    text_Old[i].setBackgroundResource(R.drawable.ellipse_unselected);
+                }
+                for (TextView number_Old : text_Old) {
+                    number_Old.setEnabled(true);
+
+                }
+                for (TextView number_Unit : text_Unit) {
+                    number_Unit.setEnabled(true);
+
+                }
+
+            }
+        });
+
+        cuoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(selectedOld!=null && selectedUnit!=null){
+                    redum();
+                    showtiime.setVisibility(View.VISIBLE);
+                    showRandom.setVisibility(View.VISIBLE);
+                    cuoc.setVisibility(View.GONE);
+                    resset.setVisibility(View.GONE);
+                    cuoc.setVisibility(View.GONE);
+                    resset.setVisibility(View.GONE);
+                    x1.setEnabled(false);
+                    x3.setEnabled(false);
+                    x5.setEnabled(false);
+                    x10.setEnabled(false);
+                    for (TextView number_Old : text_Old) {
+                        number_Old.setEnabled(false);
+
+                    }
+                    for (TextView number_Unit : text_Unit) {
+                        number_Unit.setEnabled(false);
+
+                    }
+                    CountDownTimer countDownTimer=new CountDownTimer(20000,1000) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                            showtiime.setText("Times: "+ millisUntilFinished/1000+" s");
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            sum=selected_old+selected_Unit;
+                            Log.d("AAA =  ",sum);
+                            showRandom.setText(""+so_dum);
+                            if(so_dum.equals(sum)){
+                                showtiime.setText("Chức mừng bạn giành chiến thắng");
+                            }else {
+                                showtiime.setText("Rất tiếc bạn thua rồi !");
+
+
+                            }
+
+
+
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    x1.setVisibility(View.VISIBLE);
+                                    x3.setVisibility(View.VISIBLE);
+                                    x5.setVisibility(View.VISIBLE);
+                                    x10.setVisibility(View.VISIBLE);
+
+                                    showRandom.setText("");
+                                    showtiime.setText("");
+                                    resset.setVisibility(View.VISIBLE);
+                                }
+                            },2500);
+                        }
+                    }.start();
+                }else {
+                    Toast.makeText(requireContext(), "Bạn chưa chọn số . Xiin vui lòng chọn lại !", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
 
         return rootView;
     }
 
-//    private boolean shouldShowMoneyInputDialog() {
-//        return !sharedPreferences.contains("TotalMoney");
-//    }
-
-
-    @SuppressLint("ResourceType")
-    @Override
-    public void onClick(View view) {
-        boolean isSelected = view.isSelected();
-        boolean isNumberFrameLayout = false;
-        boolean isNumber00FrameLayout = false;
-
-        for (FrameLayout numberFrameLayout : numberFrameLayouts) {
-            if (view == numberFrameLayout) {
-                isNumberFrameLayout = true;
-                break;
+    // xet hang chuc
+    // xet ler
+    private void le_Old(TextView[] text_Old) {
+        for (int i = 0; i < text_Old.length; i++) {
+            TextView textView = text_Old[i];
+            if (i % 2 != 0) {
+                textView.setVisibility(View.VISIBLE);
+            } else {
+                textView.setVisibility(View.GONE);
             }
         }
-        for (FrameLayout number00FrameLayout : number00FrameLayouts) {
-            if (view == number00FrameLayout) {
-                isNumber00FrameLayout = true;
-                break;
-            }
-        }
-
-        if (isNumberFrameLayout) {
-            for (int i = 0; i < numberFrameLayouts.length; i++) {
-                FrameLayout frameLayout = numberFrameLayouts[i];
-                int finalI = i;
-                frameLayout.setSelected(frameLayout == view && !isSelected);
-                updateImageViewBackground(numberImageViews[i], numberTextViews[i], frameLayout.isSelected());
-            }
-        }
-        if (isNumber00FrameLayout) {
-            for (int i = 0; i < number00FrameLayouts.length; i++) {
-                FrameLayout frameLayout = number00FrameLayouts[i];
-                frameLayout.setSelected(frameLayout == view && !isSelected);
-
-                updateImageViewBackground(number00ImageViews[i], number00TextViews[i], frameLayout.isSelected());
-
-            }
-        }
-
-
-
-        if (view == allButton ) {
-            showAllNumbers();
-        } else if (view == oddButton) {
-            showNumbers(true);
-        } else if (view == evenButton) {
-            showNumbers(false);
-        } else if (view == eraseButton) {
-        }
-        if (view == all2Button) {
-            for (FrameLayout frameLayout : number00FrameLayouts) {
-                frameLayout.setVisibility(View.VISIBLE);
-            }
-        } else if (view == odd2Button) {
-            shownumbers02(true);
-        } else if (view == even2Button) {
-            shownumbers02(false);
-        } else if ( view == erase2Button) {
-
-        }
-
 
     }
 
-    private void updateImageViewBackground(ImageView imageView, TextView textView, boolean selected) {
-        GradientDrawable gradientDrawable = new GradientDrawable();
-        gradientDrawable.setShape(GradientDrawable.OVAL);
-        gradientDrawable.setStroke(4, ContextCompat.getColor(requireContext(), R.color.stroke_color));
-
-        if (selected) {
-            gradientDrawable.setColors(new int[]{ContextCompat.getColor(requireContext(), R.color.gradient_start_color),
-                    ContextCompat.getColor(requireContext(), R.color.gradient_end_color)});
-            textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
+    // xet_chan
+    private void Chan_Old(TextView[] text_Old) {
+        for (int i = 0; i < text_Old.length; i++) {
+            TextView textView = text_Old[i];
+            if (i % 2 == 0) {
+                textView.setVisibility(View.VISIBLE);
+            } else {
+                textView.setVisibility(View.GONE);
+            }
+        }
+    }
+// set hang don vi
+private void le_Unit(TextView[] text_Old) {
+    for (int i = 0; i < text_Old.length; i++) {
+        TextView textView = text_Old[i];
+        if (i % 2 != 0) {
+            textView.setVisibility(View.VISIBLE);
         } else {
-            gradientDrawable.setColor(ContextCompat.getColor(requireContext(), R.color.unselected_color));
-            textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.black));
-        }
-        imageView.setBackground(gradientDrawable);
-    }
-
-    private void showAllNumbers() {
-        for (FrameLayout frameLayout : numberFrameLayouts) {
-            frameLayout.setVisibility(View.VISIBLE);
-        }
-
-    }
-
-    private void showNumbers(boolean showOdd) {
-        for (int i = 0; i < numberFrameLayouts.length; i++) {
-            FrameLayout frameLayout = numberFrameLayouts[i];
-            frameLayout.findViewById(getNumberTextViewId(i));
-
-            if (showOdd && i % 2 == 0) {
-                frameLayout.setVisibility(View.GONE);
-            } else if (!showOdd && i % 2 != 0) {
-                frameLayout.setVisibility(View.GONE);
-            } else {
-                frameLayout.setVisibility(View.VISIBLE);
-            }
-        }
-
-
-    }
-    private  void shownumbers02(boolean showUnit){
-        for (int i = 0; i < number00FrameLayouts.length; i++) {
-            FrameLayout frameLayout = number00FrameLayouts[i];
-            frameLayout.findViewById(getNumberTextViewId(i + 10));
-
-            if (showUnit && (i + 10) % 2 == 0) {
-                frameLayout.setVisibility(View.GONE);
-            } else if (!showUnit && (i + 10) % 2 != 0) {
-                frameLayout.setVisibility(View.GONE);
-            } else {
-                frameLayout.setVisibility(View.VISIBLE);
-            }
+            textView.setVisibility(View.GONE);
         }
     }
 
-    private int getNumberTextViewId(int number) {
-        int textViewId = getResources().getIdentifier("number" + number + "TextView", "id", requireActivity().getPackageName());
-        return textViewId != 0 ? textViewId : R.id.number0TextView;
-    }
 }
+
+    // xet_chan
+    private void Chan_Unit(TextView[] text_Old) {
+        for (int i = 0; i < text_Old.length; i++) {
+            TextView textView = text_Old[i];
+            if (i % 2 == 0) {
+                textView.setVisibility(View.VISIBLE);
+            } else {
+                textView.setVisibility(View.GONE);
+            }
+        }
+    }
+    private  void redum(){
+        a_dum=random.nextInt(99);
+        if(a_dum>10){
+            so_dum= String.valueOf(a_dum);
+        }else if(a_dum>0){
+            so_dum="0"+String.valueOf(a_dum);
+        } else if (a_dum==0) {
+            so_dum="00";
+        }
+    }
+
+
+
+}
+
+
+
+
