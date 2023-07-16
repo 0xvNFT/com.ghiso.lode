@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="LinearTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#F75F13</item>
+        <item name="colorPrimaryDark">#F70D95</item>
+    </style>
+
+    <style name="DialogStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:textColorPrimary">@color/black</item>
+    </style>
+
+</resources>
