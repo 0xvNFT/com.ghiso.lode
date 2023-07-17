@@ -13,28 +13,6 @@
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="20dp"
-                android:text="@string/t_l_c_c_1_n_99_5"
-                android:textAlignment="textEnd" />
-
-            <TextView
-                android:id="@+id/totalMoneyTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="20dp" />
-        </FrameLayout>
-
         <RadioGroup
             android:id="@+id/radioGroup"
             android:layout_width="match_parent"
@@ -73,7 +51,7 @@
         android:layout_height="0dp"
         android:layout_marginBottom="10dp"
         android:fitsSystemWindows="true"
-        app:layout_constraintBottom_toTopOf="@id/chip"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/radios">
@@ -713,7 +691,8 @@
                     android:background="@drawable/square_unselected"
                     android:gravity="center"
                     android:text="@string/_57"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    tools:ignore="TooManyViews" />
 
                 <TextView
                     android:id="@+id/num58"
@@ -750,19 +729,21 @@
         </TableLayout>
     </ScrollView>
 
-    <LinearLayout
-        android:id="@+id/chip"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/chip"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_alignParentBottom="true"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent">-->
 
-        <include
-            android:id="@+id/include"
-            layout="@layout/chip_layout" />
-    </LinearLayout>
+    <!--        <com.ghiso.lode.ChipLayoutView-->
+    <!--            android:id="@+id/chipLayoutView"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            />-->
+    <!--    </LinearLayout>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

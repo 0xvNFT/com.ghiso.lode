@@ -23,7 +23,7 @@
     <string name="x_a">Xóa</string>
     <string name="t_l_c_c_1_n_99_5">Tỉ lệ cược 1 ăn 99.5</string>
     <string name="nh">ĐÁNH ĐỀ</string>
-    <string name="how_to_play">Cách chơi:\nGiữa mỗi cược cần phân cách bởi dấu ; hoặc dấu , hoặc thanh dọc | hoặc khoảng trống\nVí dụ: 01,02,03 hoặc 01 02 03 hoặc 01;02;03 hoặc 01|02|03</string>
+    <string name="how_to_play">Cách chơi:\nChỉ nhập các số từ 00 đến 99.</string>
     <string name="random">Ngẫu nhiên</string>
     <string name="even">Chẵn</string>
     <string name="odd">Lẻ</string>

@@ -7,30 +7,35 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.ghiso.lode.R;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
-public class Option1Fragment extends Fragment implements View.OnClickListener, MoneyInputDialogFragment.MoneyInputListener {
+
+public class Option1Fragment extends Fragment implements View.OnClickListener {
     private FrameLayout[] numberFrameLayouts;
     private ImageView[] numberImageViews;
     private TextView[] numberTextViews;
     private FrameLayout[] number00FrameLayouts;
     private ImageView[] number00ImageViews;
     private TextView[] number00TextViews;
-
-    private TextView totalMoneyTextView;
-    private double totalMoney = 0.0;
-    private SharedPreferences sharedPreferences;
     private Button allButton, oddButton, evenButton, eraseButton,
             all2Button, odd2Button, even2Button, erase2Button;
+    private List<Integer> selectedNumbers;
+    private int winningNumber;
+    private double totalMoney;
 
     public Option1Fragment() {
     }
@@ -46,6 +51,9 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
         number00FrameLayouts = new FrameLayout[10];
         number00ImageViews = new ImageView[10];
         number00TextViews = new TextView[10];
+        selectedNumbers = new ArrayList<>();
+
+
         //FIRST
         for (int i = 0; i < 10; i++) {
             int numberId = getResources().getIdentifier("number" + i + "FrameLayout", "id", requireActivity().getPackageName());
@@ -75,16 +83,6 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
         for (FrameLayout frameLayout : number00FrameLayouts) {
             frameLayout.setOnClickListener(this);
         }
-
-        sharedPreferences = requireActivity().getSharedPreferences("MoneyInput", 0);
-        totalMoneyTextView = rootView.findViewById(R.id.totalMoneyTextView);
-        totalMoney = sharedPreferences.getFloat("TotalMoney", 0);
-        totalMoneyTextView.setText(String.format(Locale.getDefault(), "%.2f", totalMoney));
-
-        if (savedInstanceState == null && shouldShowMoneyInputDialog()) {
-            showMoneyInputDialog();
-        }
-
         // buttons
         allButton = rootView.findViewById(R.id.all);
         oddButton = rootView.findViewById(R.id.odd);
@@ -106,19 +104,6 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
         erase2Button.setOnClickListener(this);
 
         return rootView;
-    }
-    private boolean shouldShowMoneyInputDialog() {
-        return !sharedPreferences.contains("TotalMoney");
-    }
-    private void showMoneyInputDialog() {
-        MoneyInputDialogFragment moneyInputDialogFragment = MoneyInputDialogFragment.newInstance();
-        moneyInputDialogFragment.setMoneyInputListener(this);
-        moneyInputDialogFragment.show(getChildFragmentManager(), "money_input_dialog");
-    }
-    @Override
-    public void onMoneyInputConfirmed(double money) {
-        totalMoney += money;
-        totalMoneyTextView.setText(String.format(Locale.getDefault(), "%.2f", totalMoney));
     }
     @Override
     public void onClick(View view) {
@@ -159,6 +144,7 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
             handleGroup2ButtonClick(view);
         } else if (view == eraseButton) {
             clearSelection(numberFrameLayouts, numberImageViews, numberTextViews);
+        } else if (view == erase2Button) {
             clearSelection(number00FrameLayouts, number00ImageViews, number00TextViews);
         }
     }
@@ -176,7 +162,6 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
         }
         imageView.setBackground(gradientDrawable);
     }
-
     private void handleGroup1ButtonClick(View view) {
         boolean isSelected = view.isSelected();
         clearSelection(numberFrameLayouts, numberImageViews, numberTextViews);
@@ -193,7 +178,6 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
 
         view.setSelected(!isSelected);
     }
-
     private void handleGroup2ButtonClick(View view) {
         boolean isSelected = view.isSelected();
         clearSelection(number00FrameLayouts, number00ImageViews, number00TextViews);
@@ -210,13 +194,11 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
 
         view.setSelected(!isSelected);
     }
-
     private void showAllNumbers(FrameLayout[] frameLayouts) {
         for (FrameLayout frameLayout : frameLayouts) {
             frameLayout.setVisibility(View.VISIBLE);
         }
     }
-
     private void showOddNumbers(FrameLayout[] frameLayouts) {
         for (int i = 0; i < frameLayouts.length; i++) {
             FrameLayout frameLayout = frameLayouts[i];
@@ -227,7 +209,6 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
             }
         }
     }
-
     private void showEvenNumbers(FrameLayout[] frameLayouts) {
         for (int i = 0; i < frameLayouts.length; i++) {
             FrameLayout frameLayout = frameLayouts[i];
@@ -238,7 +219,6 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
             }
         }
     }
-
     private void clearSelection(FrameLayout[] frameLayouts, ImageView[] imageViews, TextView[] textViews) {
         for (int i = 0; i < frameLayouts.length; i++) {
             frameLayouts[i].setSelected(false);
@@ -252,6 +232,84 @@ public class Option1Fragment extends Fragment implements View.OnClickListener, M
 
     private boolean isGroup2Button(View view) {
         return view == all2Button || view == odd2Button || view == even2Button;
+    }
+
+    public void generateWinningNumber() {
+        int min = 0;
+        int max = 99;
+        winningNumber = new Random().nextInt((max - min) + 1) + min;
+        TextView winningNumberTextView = requireActivity().findViewById(R.id.winningNumber);
+        winningNumberTextView.setText(String.format(Locale.getDefault(), "%02d", winningNumber));
+
+        EditText moneyField = requireActivity().findViewById(R.id.moneyField);
+        String betAmountText = moneyField.getText().toString();
+        double betAmount = 0.0;
+        if (!betAmountText.isEmpty()) {
+            betAmount = Double.parseDouble(betAmountText);
+        }
+
+        boolean isMatch = isNumberSelected(winningNumber);
+
+        double totalMoney = calculateTotalMoney(betAmount, isMatch);
+
+        TextView totalMoneyTextView = requireActivity().findViewById(R.id.totalMoneyTextView);
+        totalMoneyTextView.setText(String.format(Locale.getDefault(), "%.2f", totalMoney));
+
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("MoneyInput", 0);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putFloat("TotalMoney", (float) totalMoney);
+        editor.apply();
+
+        if (isMatch) {
+            String message = String.format(Locale.getDefault(), "Congratulations! You won %.2f. Total money: %.2f", betAmount, totalMoney);
+            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private boolean isNumberSelected(int number) {
+        for (int i = 0; i < numberTextViews.length; i++) {
+            if (numberFrameLayouts[i].isSelected()) {
+                int selectedNumber = Integer.parseInt(numberTextViews[i].getText().toString());
+                if (selectedNumber == number) {
+                    return true;
+                }
+            }
+        }
+        for (int i = 0; i < number00TextViews.length; i++) {
+            if (number00FrameLayouts[i].isSelected()) {
+                int selectedNumber = Integer.parseInt(number00TextViews[i].getText().toString());
+                if (selectedNumber == number) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private double calculateTotalMoney(double betAmount, boolean isMatch) {
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("MoneyInput", 0);
+        totalMoney = sharedPreferences.getFloat("TotalMoney", 0.0f);
+
+        if (isMatch) {
+            return totalMoney + betAmount;
+        } else {
+            return totalMoney - betAmount;
+        }
+    }
+
+    public boolean areNumbersSelected() {
+        for (FrameLayout frameLayout : numberFrameLayouts) {
+            if (frameLayout.isSelected()) {
+                return true;
+            }
+        }
+
+        for (FrameLayout frameLayout : number00FrameLayouts) {
+            if (frameLayout.isSelected()) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
