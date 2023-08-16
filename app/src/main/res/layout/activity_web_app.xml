@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="12"
+    android:orientation="vertical"
+    tools:context=".ui.WebViewLink">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_weight="0.5"
+        android:orientation="horizontal"
+        android:background="@drawable/head_bg"
+        android:weightSum="3"
+        >
+        <LinearLayout
+            android:onClick="CHANGE"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/change_24"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:text="Đổi Link"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:onClick="HOME"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/home_24"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:text="Trang chủ"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:onClick="CONTACT"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/phone_24"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:text="Hỗ trợ"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/appbar">
+        <ProgressBar
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:indeterminateTint="#85B4DD"
+            android:progressTint="#3173A8"
+            android:layout_height="3dp"
+            android:background="#AFE0F3"
+            android:elevation="5dp"
+            android:visibility="gone"
+            android:id="@+id/prosec"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="11.5">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <WebView
+                android:id="@+id/web1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <WebView
+                android:id="@+id/web2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <WebView
+                android:id="@+id/web3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
