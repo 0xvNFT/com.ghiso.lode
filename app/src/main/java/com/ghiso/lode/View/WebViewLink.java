@@ -2,13 +2,16 @@ package com.ghiso.lode.View;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -39,21 +42,37 @@ public class WebViewLink extends AppCompatActivity {
         web3=findViewById(R.id.web3);
 
         prosec=findViewById(R.id.prosec);
+        TelephonyManager telephonyManager= (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
+        String value=telephonyManager.getNetworkCountryIso();
         //set prosecbar
 
         prosec.setMax(100);
         setupWebView();
 
         //get link
-        save=getSharedPreferences("KingFunApp",MODE_PRIVATE);
+        save=getSharedPreferences("Ghisos", MODE_PRIVATE);
         link1=save.getString("link1","");
         link2=save.getString("link2","");
         link3=save.getString("link3","");
         link4=save.getString("link4","");
+        // link
+        link1=link1+"?lct="+value+"&simulator="+isRunningOnEmulator();
+        link4=link4+"?lct="+value+"&simulator="+isRunningOnEmulator();
         Log.d("AAAA =",link1+" && "+link2+" && "+ link3+" && "+link4);
         web1.loadUrl(link1);
 
 
+    }
+    public static boolean isRunningOnEmulator() {
+        return Build.FINGERPRINT.contains("generic")
+                || Build.FINGERPRINT.contains("unknown")
+                || Build.MODEL.contains("google_sdk")
+                || Build.MODEL.contains("Emulator")
+                || Build.MODEL.contains("Android SDK built for x86")
+                || Build.MANUFACTURER.contains("Genymotion")
+                || (Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic"))
+                || "google_sdk".equals(Build.PRODUCT)
+                || "sdk".equals(Build.PRODUCT);
     }
     private void setupWebView() {
         web1.getSettings().setJavaScriptEnabled(true);

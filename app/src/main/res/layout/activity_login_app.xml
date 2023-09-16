@@ -5,17 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
-    tools:context=".View.LoginApp">
+    tools:context=".View.LoginAppss">
+
     <TextView
         android:id="@+id/text_app"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="180dp"
-        android:text="GHi Số Lô Đề"
+        android:fontFamily="@font/aclonica"
+        android:text="GHi Số LoDe"
         android:textAllCaps="true"
         android:textColor="#25E829"
-        android:textSize="60sp"
+        android:textSize="42sp"
         android:textStyle="bold"
+        android:gravity="center"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +39,7 @@
         android:id="@+id/texta"/>
     <EditText
         android:layout_width="280dp"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:hint="Nhập số điện thoại "
         android:gravity="center"
         app:layout_constraintLeft_toLeftOf="parent"
